@@ -3,3 +3,4 @@ pydub
 flask
 ffmpeg-python
 gunicorn
+python-dotenv

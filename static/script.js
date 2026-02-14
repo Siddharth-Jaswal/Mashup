@@ -51,6 +51,7 @@ form.addEventListener("submit", async (e) => {
     }
 
     downloadLink.href = `/download/web_mashup.mp3`;
+    
     result.classList.remove("hidden");
 
     // 🔥 60-second countdown

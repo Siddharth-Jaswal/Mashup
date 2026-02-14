@@ -5,6 +5,16 @@ import sys
 import threading
 import time
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+APP_ENV = os.getenv("APP_ENV", "local")
+FFMPEG_PATH = os.getenv("FFMPEG_PATH")
+DELETE_DELAY = int(os.getenv("DELETE_DELAY", 20))
+BASE_URL = os.getenv("BASE_URL", "")
+
+
 
 app = Flask(__name__)
 
@@ -70,7 +80,7 @@ def download_file(filename):
     if not os.path.exists(file_path):
         return {"error": "File not found"}, 404
 
-    delete_file_later(file_path, delay=60)
+    delete_file_later(file_path, delay=DELETE_DELAY)
 
     return send_from_directory(
         directory=output_folder,

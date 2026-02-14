@@ -3,9 +3,19 @@ import sys
 import os
 from yt_dlp import YoutubeDL
 from pydub import AudioSegment
+from dotenv import load_dotenv
 
-# 🔥 Set ffmpeg path (Windows)
-os.environ["PATH"] += os.pathsep + r"D:\ffmpeg-2026-02-09-git-9bfa1635ae-essentials_build\bin"
+load_dotenv()
+
+APP_ENV = os.getenv("APP_ENV", "local")
+FFMPEG_PATH = os.getenv("FFMPEG_PATH")
+DELETE_DELAY = int(os.getenv("DELETE_DELAY", 20))
+BASE_URL = os.getenv("BASE_URL", "")
+
+
+if APP_ENV == "local" and FFMPEG_PATH:
+    os.environ["PATH"] += os.pathsep + FFMPEG_PATH
+
 
 
 # -----------------------------
