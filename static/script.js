@@ -51,13 +51,18 @@ form.addEventListener("submit", async (e) => {
     }
 
     downloadLink.href = `/download/web_mashup.mp3`;
-    
+
+    // 🔥 RESET any previous disabled styles
+    downloadLink.removeAttribute("style");
+    downloadLink.style.cursor = "pointer";
+
     result.classList.remove("hidden");
+
 
     // 🔥 60-second countdown
     let seconds = 60;
     downloadLink.textContent = `Download (Available for ${seconds}s)`;
-    downloadLink.classList.remove("disabled");
+
 
     const countdown = setInterval(() => {
         seconds--;
