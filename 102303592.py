@@ -93,13 +93,33 @@ def get_video_urls(singer_name, num_videos):
 # Download Audio Only
 # -----------------------------
 def download_single_video(video_url, index):
+    # ydl_opts = {
+    #     'format': 'bestaudio[ext=webm]/bestaudio',
+    #     'outtmpl': f'downloads/video_{index}.%(ext)s',
+    #     'noplaylist': True,
+    #     'quiet': True,
+    #     'no_warnings': True,
+    #     'extractor_args': {
+    #         'youtube': {
+    #             'player_client': ['android']
+    #         }
+    #     }
+    # }
+
     ydl_opts = {
-        'format': 'bestaudio[ext=webm]/bestaudio',
+        'format': 'bestaudio/best',
         'outtmpl': f'downloads/video_{index}.%(ext)s',
         'noplaylist': True,
         'quiet': True,
-        'no_warnings': True
+        'no_warnings': True,
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android'],
+                'player_skip': ['webpage', 'configs']
+            }
+        }
     }
+
 
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([video_url])
