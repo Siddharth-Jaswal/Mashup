@@ -328,3 +328,98 @@ This project demonstrates:
 
 It evolved from a simple script to a deployable full-stack application.
 
+
+
+---
+
+<br>
+<br>
+<br>
+
+## IMPORTANT NOTE BELOW
+
+<br>
+<br>
+<br>
+
+---
+
+
+## Deployment Notes (Cloud Environments)
+
+### YouTube Anti-Bot Protection in Cloud Deployments
+
+When deploying this application on cloud platforms such as Render, AWS, GCP, or similar providers, YouTube may block download requests with errors like:
+
+```
+Sign in to confirm you’re not a bot
+```
+
+This happens because cloud platforms use shared datacenter IP addresses, which are frequently flagged by YouTube’s automated traffic detection systems.
+
+### Why This Happens
+
+- Cloud providers use shared IP ranges.
+- These IPs are commonly associated with automated traffic.
+- YouTube applies stricter rate limiting and bot detection to such networks.
+- As a result, video/audio extraction may fail during deployment.
+
+### Important Clarification
+
+This is not a bug in the application logic.
+
+The mashup engine works correctly:
+- In local environments
+- On residential networks
+- In environments where YouTube does not apply bot restrictions
+
+The restriction originates from YouTube’s anti-scraping infrastructure.
+
+---
+
+## Recommended Usage
+
+### For Reliable Execution
+
+Run the application locally:
+
+```
+python web_app.py
+```
+
+or use the CLI version:
+
+```
+python 102303592.py "Singer Name" 12 30 mashup.mp3
+```
+
+Local execution avoids cloud IP detection issues.
+
+---
+
+## Production Architecture Considerations
+
+In a real-world production environment, a more robust system would:
+
+- Use background task queues (e.g., Celery or RQ)
+- Implement job status tracking
+- Handle download retries gracefully
+- Avoid long-running synchronous request processing
+- Possibly integrate approved media APIs instead of direct scraping
+
+This project intentionally focuses on demonstrating:
+
+- Full-stack integration
+- Media processing pipeline design
+- Environment-based configuration
+- Deployment workflow
+- File lifecycle management
+
+---
+
+## Summary
+
+- The mashup generation logic is functional and correct.
+- Cloud IP restrictions may prevent YouTube downloads.
+- Local execution is fully supported and recommended.
+- The project demonstrates architectural design rather than scraping reliability at scale.
