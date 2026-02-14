@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mashup Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Mashup Generator 🎵</h1>
+
+    <form id="mashupForm">
+        <input type="text" id="singer" placeholder="Singer Name" required>
+
+        <input type="number" id="videos" placeholder="Number of Videos (>10)" required>
+
+        <input type="number" id="duration" placeholder="Duration in seconds (>20)" required>
+
+        <button type="submit">Generate Mashup</button>
+    </form>
+
+    <div id="loading" class="hidden">Generating mashup... ⏳</div>
+
+    <div id="result" class="hidden">
+        <a id="downloadLink" href="#">Download Mashup</a>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
