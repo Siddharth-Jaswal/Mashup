@@ -121,8 +121,11 @@ def download_single_video(video_url, index):
     }
 
 
-    with YoutubeDL(ydl_opts) as ydl:
-        ydl.download([video_url])
+    try:
+        with YoutubeDL(ydl_opts) as ydl:
+            ydl.download([video_url])
+    except Exception:
+        return None
 
     for file in os.listdir("downloads"):
         if file.startswith(f"video_{index}") and not file.endswith(".part"):
