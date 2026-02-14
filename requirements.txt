@@ -1,0 +1,5 @@
+yt-dlp
+pydub
+flask
+ffmpeg-python
+gunicorn
